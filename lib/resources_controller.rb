@@ -456,7 +456,6 @@ module ResourcesController
     
     unless included_modules.include? ResourcesController::InstanceMethods
       class_attribute :specifications, :route_name
-      hide_action :specifications, :route_name
       extend  ResourcesController::ClassMethods
       helper  ResourcesController::Helper
       include ResourcesController::InstanceMethods, ResourcesController::NamedRouteHelper
@@ -557,7 +556,6 @@ private
   
   module InstanceMethods
     def self.included(controller)
-      controller.send :hide_action, *instance_methods
     end
     
     def resource_service=(service)
